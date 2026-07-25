@@ -28,6 +28,7 @@ since they replace the standard list renderer entirely rather than
 extending it.
 """,
     'depends': ['web'],
+    'images': ['static/description/banner.png'],
     'data': [],
     'assets': {
         'web.assets_backend': [
