@@ -1,0 +1,19 @@
+.o_row_number_header,
+.o_row_number,
+.o_row_number_footer,
+.o_row_number_group {
+    width: 40px;
+    min-width: 40px;
+    max-width: 56px;
+}
+
+.o_row_number {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.6;
+    user-select: none;
+}
+
+.o_row_number_header {
+    font-weight: 400;
+    opacity: 0.6;
+}
