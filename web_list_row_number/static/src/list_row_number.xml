@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Header cell: one extra "#" column, prepended before whatever is
+         currently the first column (selector checkbox or first field). -->
+    <t t-inherit="web.ListRenderer" t-inherit-mode="extension">
+        <xpath expr="//thead/tr/th[1]" position="before">
+            <th class="o_row_number_header o_list_controller text-center text-muted" tabindex="-1">#</th>
+        </xpath>
+        <xpath expr="//tfoot/tr/td[1]" position="before">
+            <td class="o_row_number_footer"/>
+        </xpath>
+    </t>
+
+    <!-- Data row: the row number is the offset of the current list
+         (0 for the first page, N for a page starting at record N) plus the
+         record's index within that page/group, 1-based. `list` and
+         `record_index` are already in scope here: `list` is set by the
+         calling web.ListRenderer.Rows template (props.list at top level,
+         group.list inside a group), and `record_index` is the implicit
+         QWeb loop variable for `t-foreach="list.records" t-as="record"`. -->
+    <t t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension">
+        <xpath expr="//tr/td[1]" position="before">
+            <td class="o_row_number text-center text-muted" tabindex="-1">
+                <t t-esc="list.offset + record_index + 1"/>
+            </td>
+        </xpath>
+    </t>
+
+    <!-- Group header row: no number, just keep the columns aligned. -->
+    <t t-inherit="web.ListRenderer.GroupRow" t-inherit-mode="extension">
+        <xpath expr="//tr/th[1]" position="before">
+            <th class="o_row_number_group"/>
+        </xpath>
+    </t>
+
+</templates>
