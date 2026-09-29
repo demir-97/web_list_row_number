@@ -38,6 +38,4 @@ extending it.
     'installable': True,
     'application': False,
     'license': 'OPL-1',
-    'price': 8.0,
-    'currency': 'USD',
 }
