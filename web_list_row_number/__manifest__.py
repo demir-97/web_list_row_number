@@ -1,18 +1,19 @@
 {
     'name': 'List View Row Number | Sr. No. / Serial Number / Line Number Column',
-    'version': '18.0.1.0.1',
+    'version': '18.0.1.0.2',
     'category': 'Productivity',
     'author': 'Meisanqo',
     'support': 'meisanqo@outlook.com',
-    'summary': 'A "#" row-number column for every list view — zero configuration.',
+    'summary': "Row number column for every list view: a read-only \"#\" column numbering the rows 1, 2, 3. Serial number, Sr. No. or line number display with no field added to your models. Numbering is continuous across pages instead of restarting at 1, restarts at 1 inside each group of a grouped list view, and also appears in the one2many and many2many tables embedded in a form, except lists drawn by a fully custom renderer such as sale order lines. Zero configuration: install it and the column is there, with no effect on exports or imports.",
     'description': """
 List View Row Number
 =====================
 
 Adds a small, read-only "#" column in front of every list view — the main
 list views, and the embedded one2many / many2many tables inside a form
-(sale order lines, purchase order lines, invoice lines, stock moves, BoM
-lines, and any other list/tree view).
+(purchase order lines, stock moves, BoM lines, and any other list/tree
+view). Sale order lines and invoice lines are the exception, see the known
+limitation below: they are drawn by their own section-and-note renderer.
 
 - Numbering is continuous across pages: page 2 continues from where page 1
   left off (based on the list's offset), it does not restart at 1.
