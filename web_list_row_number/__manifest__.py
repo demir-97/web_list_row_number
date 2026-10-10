@@ -1,6 +1,6 @@
 {
     'name': 'List View Row Number | Sr. No. / Serial Number / Line Number Column',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'category': 'Productivity',
     'author': 'Meisanqo',
     'support': 'meisanqo@outlook.com',
