@@ -1,0 +1,13 @@
+// No width here on purpose: the column declares `attrs.width` instead, so the
+// list's own width engine sizes it. A width in CSS would be overridden by the
+// inline width the engine writes, and a min-width would silently fight it.
+.o_row_number {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.6;
+    user-select: none;
+}
+
+.o_row_number_header {
+    font-weight: 400;
+    opacity: 0.6;
+}

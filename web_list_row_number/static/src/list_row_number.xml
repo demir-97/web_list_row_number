@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- The cells are rendered from inside the renderer's own column loops, so
+         the "#" column is a column like any other: it is counted by the width
+         engine, by the footer colspan and by the group-row colspan. See
+         list_row_number.js for why injecting bare <th>/<td> around those loops
+         does not work.
+
+         The header's branches form a t-if/t-elif/t-else chain (field,
+         column_group, then everything else), so ours has to join it as a
+         t-elif. Inserting a separate t-if between them would steal the
+         t-else from the preceding branch, and the chain would render two
+         cells. -->
+    <t t-inherit="web.ListRenderer" t-inherit-mode="extension">
+        <xpath expr="//thead//th[@t-else]" position="before">
+            <th t-elif="column.type === 'row_number'"
+                class="o_row_number_header text-center text-muted"
+                tabindex="-1">#</th>
+        </xpath>
+    </t>
+
+    <!-- The row's branches are independent t-ifs rather than a chain, so this
+         one is simply appended. Odoo 20 calls the renderer's own methods with
+         an explicit `this.` in templates, hence `this.getColumns(record)`.
+
+         `list` and `record_index` are in scope here: `list` is set by the
+         calling web.ListRenderer.Rows template (props.list at top level,
+         group.list inside a group) and `record_index` is the loop variable of
+         its `t-foreach="list.records"`. Adding the list's offset is what keeps
+         numbering continuous across pages instead of restarting at 1. -->
+    <t t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="extension">
+        <xpath expr="//t[@t-foreach='this.getColumns(record)']" position="inside">
+            <t t-if="column.type === 'row_number'">
+                <td class="o_row_number text-center text-muted" tabindex="-1">
+                    <t t-esc="list.offset + record_index + 1"/>
+                </td>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
